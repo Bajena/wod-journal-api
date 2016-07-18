@@ -4,8 +4,8 @@ class CreateWods < ActiveRecord::Migration[5.0]
       t.text :comment
       t.string :date
       t.integer :timecap_seconds
-      t.string :type, null: false
-      t.string :name
+      t.string :goal_type, null: false
+      t.string :title
       t.boolean :private, default: true
 
       t.timestamps

@@ -10,15 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718352532) do
+ActiveRecord::Schema.define(version: 20160718203438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "excercises", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "default_kg_men"
+    t.integer  "default_kg_women"
+    t.integer  "default_reps"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,26 +34,40 @@ ActiveRecord::Schema.define(version: 20160718352532) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "workout_items", force: :cascade do |t|
-    t.integer  "excercise_id"
+  create_table "wod_items", force: :cascade do |t|
+    t.integer  "wod_id"
     t.integer  "reps"
+    t.integer  "weight_men"
+    t.integer  "weight_women"
     t.integer  "time_seconds"
-    t.string   "type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["excercise_id"], name: "index_workout_items_on_excercise_id", using: :btree
-    t.index ["type"], name: "index_workout_items_on_type", using: :btree
+    t.index ["wod_id"], name: "index_wod_items_on_wod_id", using: :btree
+  end
+
+  create_table "wods", force: :cascade do |t|
+    t.text     "comment"
+    t.string   "date"
+    t.integer  "timecap_seconds"
+    t.string   "goal_type",                      null: false
+    t.string   "title"
+    t.boolean  "private",         default: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "workouts", force: :cascade do |t|
+    t.integer  "wod_id"
     t.string   "title"
     t.text     "comment"
-    t.datetime "workout_at"
     t.integer  "duration_seconds"
+    t.integer  "total_reps"
     t.boolean  "completed"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["wod_id"], name: "index_workouts_on_wod_id", using: :btree
   end
 
-  add_foreign_key "workout_items", "excercises"
+  add_foreign_key "wod_items", "wods"
+  add_foreign_key "workouts", "wods"
 end
