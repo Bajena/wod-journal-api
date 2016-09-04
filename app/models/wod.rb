@@ -1,6 +1,10 @@
 class Wod < ApplicationRecord
-  enum goal_type: [:amrap, :for_time, :emom]
-  has_many :wod_items
+  GOAL_TYPES = %w(amrap for_time emom).freeze
 
+  has_many :wod_items
   belongs_to :author, class_name: "User"
+
+  enum goal_type: GOAL_TYPES
+
+  validates :goal_type, inclusion: { in: GOAL_TYPES }
 end
