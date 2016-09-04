@@ -1,7 +1,7 @@
 module WodMutations
   CreateWod = GraphQL::Relay::Mutation.define do
-    name 'CreateWod'
-    description 'Create a new WOD with excercises list and return a new WOD'
+    name "CreateWod"
+    description "Create a new WOD with excercises list and return a new WOD"
 
     # Define input parameters
     input_field :title, !types.String
@@ -10,8 +10,7 @@ module WodMutations
     # Define return parameters
     return_field :wod, WodType
 
-    # Resolve block to create comment and return hash of post and comment
-    resolve -> (inputs, ctx) do
+    resolve lambda { |inputs, ctx|
       user = ctx[:current_user]
       wod = user.wods.create(
         title: inputs[:title],
@@ -19,6 +18,6 @@ module WodMutations
       )
 
       { wod: wod }
-    end
+    }
   end
 end
