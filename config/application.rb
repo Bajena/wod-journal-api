@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -18,7 +18,9 @@ Bundler.require(*Rails.groups)
 
 module WodJournalApi
   class Application < Rails::Application
-    config.autoload_paths << Rails.root.join('app', 'graph', 'types')
+    config.autoload_paths << Rails.root.join("app", "graph", "types")
+    config.autoload_paths << Rails.root.join("app", "graph", "mutations")
+    config.autoload_paths << Rails.root.join("app", "graph", "enums")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

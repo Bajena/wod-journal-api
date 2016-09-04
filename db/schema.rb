@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718203438) do
+ActiveRecord::Schema.define(version: 20160904115225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,13 +47,15 @@ ActiveRecord::Schema.define(version: 20160718203438) do
 
   create_table "wods", force: :cascade do |t|
     t.text     "comment"
-    t.string   "date"
     t.integer  "timecap_seconds"
-    t.string   "goal_type",                      null: false
     t.string   "title"
     t.boolean  "private",         default: true
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.date     "date"
+    t.integer  "author_id"
+    t.integer  "goal_type"
+    t.index ["author_id"], name: "index_wods_on_author_id", using: :btree
   end
 
   create_table "workouts", force: :cascade do |t|
@@ -69,5 +71,6 @@ ActiveRecord::Schema.define(version: 20160718203438) do
   end
 
   add_foreign_key "wod_items", "wods"
+  add_foreign_key "wods", "users", column: "author_id"
   add_foreign_key "workouts", "wods"
 end
