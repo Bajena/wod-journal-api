@@ -3,7 +3,7 @@ rvm:
   - 2.2.3
 cache: bundler
 before_script:
-  - psql -c 'create database wod_journal_test;' -U bajena
+  - psql -c 'create database travis_ci_test;' -U postgres
 script:
   - bin/rake db:migrate RAILS_ENV=test
   - rspec
