@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# DB schemas (Mysql, CQL, Thrift)
+RAILS_ENV=development bundle exec rake db:dev:setup
+RAILS_ENV=test bundle exec rake db:dev:setup
