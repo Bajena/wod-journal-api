@@ -1,14 +1,9 @@
 class QueriesController < ApplicationController
-  def new
-  end
-
   def create
-    query_string = params[:query]
-    query_variables = params[:variables] || {}
     result = GraphQL::Query.new(
       GraphSchema,
-      query_string,
-      variables: query_variables,
+      params[:query],
+      variables: params[:variables] || {},
       context: {
         current_user: current_user
       }

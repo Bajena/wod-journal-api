@@ -7,4 +7,5 @@ class Wod < ApplicationRecord
   enum goal_type: GOAL_TYPES
 
   validates :goal_type, inclusion: { in: GOAL_TYPES }
+  validates :wod_items, presence: true
 end

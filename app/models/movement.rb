@@ -1,3 +1,3 @@
-class Movement < ActiveRecord::Base
+class Movement < ApplicationRecord
   validates :name, uniqueness: true
 end
