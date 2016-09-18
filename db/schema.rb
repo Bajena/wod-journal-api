@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918120648) do
+ActiveRecord::Schema.define(version: 20160918134945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,13 @@ ActiveRecord::Schema.define(version: 20160918120648) do
   create_table "wod_items", force: :cascade do |t|
     t.integer  "wod_id"
     t.integer  "reps"
-    t.integer  "weight_men"
-    t.integer  "weight_women"
+    t.integer  "men_weight_kg"
+    t.integer  "women_weight_kg"
     t.integer  "time_seconds"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "movement_id",     null: false
+    t.index ["movement_id"], name: "index_wod_items_on_movement_id", using: :btree
     t.index ["wod_id"], name: "index_wod_items_on_wod_id", using: :btree
   end
 
@@ -55,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160918120648) do
     t.date     "date"
     t.integer  "author_id"
     t.integer  "goal_type"
+    t.integer  "rounds"
     t.index ["author_id"], name: "index_wods_on_author_id", using: :btree
   end
 
@@ -70,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160918120648) do
     t.index ["wod_id"], name: "index_workouts_on_wod_id", using: :btree
   end
 
+  add_foreign_key "wod_items", "movements"
   add_foreign_key "wod_items", "wods"
   add_foreign_key "wods", "users", column: "author_id"
   add_foreign_key "workouts", "wods"
