@@ -1,6 +1,8 @@
 module WodMutations
   CreateWod = GraphQL::Relay::Mutation.define do
     WodItemInput = GraphQL::InputObjectType.define do
+      name "WodItemInput"
+      description "A part of WOD"
       argument :reps, !types.Int
       argument :men_weight_kg, types.Int
       argument :women_weight_kg, types.Int
@@ -23,6 +25,7 @@ module WodMutations
       wod = user.wods.new(
         title: inputs[:title],
         goal_type: inputs[:goal_type],
+        rounds: inputs[:rounds],
         date: inputs[:date]
       )
 

@@ -12,6 +12,7 @@ WodType = GraphQL::ObjectType.define do
   field :date, types.String, "Date when the WOD happens"
   field :goal_type, !WodEnums::GoalTypeEnum, "Goal type"
   field :title, types.String, "Custom WOD title"
+  field :rounds, types.Int, "Number of rounds to perform"
 
   connection :wod_items, WodItemType.connection_type
 end
