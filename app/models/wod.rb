@@ -1,7 +1,7 @@
 class Wod < ApplicationRecord
   GOAL_TYPES = %w(amrap for_time emom).freeze
 
-  has_many :wod_items
+  has_many :wod_items, dependent: :delete_all
   belongs_to :author, class_name: "User"
 
   enum goal_type: GOAL_TYPES

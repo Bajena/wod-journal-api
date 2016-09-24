@@ -1,4 +1,6 @@
 class QueriesController < ApplicationController
+  before_action :doorkeeper_authorize!
+
   def create
     result = GraphQL::Query.new(
       GraphSchema,
@@ -9,11 +11,5 @@ class QueriesController < ApplicationController
       }
     ).result
     render json: result
-  end
-
-  private
-
-  def current_user
-    User.first
   end
 end
