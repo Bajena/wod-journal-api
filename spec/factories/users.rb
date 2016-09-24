@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :user do
-    first_name "Cyprian"
-    last_name "Majcher"
+    first_name "Jan"
+    last_name "Kowalski"
+    email "jan.kowalski@wod.com"
   end
 end

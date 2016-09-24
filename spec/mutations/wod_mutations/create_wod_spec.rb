@@ -1,12 +1,21 @@
 require "rails_helper"
 
-describe WodMutations::CreateWod, type: :request do
+describe QueriesController, type: :controller do
   include JsonApiHelpers
 
   let!(:user) { FactoryGirl.create(:user) }
+  let(:token) do
+    double(
+      Doorkeeper::AccessToken, acceptable?: true, resource_owner_id: user.id
+    )
+  end
 
   subject do
-    post "/queries", params: { query: query_string }
+    post :create, params: { query: query_string }
+  end
+
+  before do
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   context "wod with items" do
