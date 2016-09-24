@@ -14,6 +14,10 @@ QueryType = GraphQL::ObjectType.define do
     resolve -> (_obj, _args, _ctx) { Wod.all }
   end
 
+  connection :movements, MovementType.connection_type do
+    resolve -> (_obj, _args, _ctx) { Movement.all }
+  end
+
   field :user do
     type UserType
     argument :id, !types.ID
