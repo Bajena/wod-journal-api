@@ -19,6 +19,7 @@ gem 'puma', '~> 3.0'
 # gem 'rack-cors'
 
 gem 'graphql'
+gem 'devise'
 gem 'doorkeeper'
 
 group :development, :test do
