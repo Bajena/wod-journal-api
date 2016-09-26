@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925153154) do
+ActiveRecord::Schema.define(version: 20160926192959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 20160925153154) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+  end
+
+  create_table "oauth_providers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider"], name: "index_oauth_providers_on_provider", using: :btree
+    t.index ["user_id"], name: "index_oauth_providers_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,6 +128,7 @@ ActiveRecord::Schema.define(version: 20160925153154) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "oauth_providers", "users"
   add_foreign_key "wod_items", "movements"
   add_foreign_key "wod_items", "wods"
   add_foreign_key "wods", "users", column: "author_id"

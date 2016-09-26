@@ -19,8 +19,11 @@ gem 'puma', '~> 3.0'
 # gem 'rack-cors'
 
 gem 'graphql'
-gem 'devise'
-gem 'doorkeeper'
+gem 'devise' # secure passswords, email/password validations
+gem 'doorkeeper' # oauth provider
+gem 'doorkeeper-grants_assertion', git: 'https://github.com/Bajena/doorkeeper-grants_assertion' # additional 'assertion' grant type for doorkeeper
+gem 'koala' # facebook api
+gem 'figaro' # app configuration
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
