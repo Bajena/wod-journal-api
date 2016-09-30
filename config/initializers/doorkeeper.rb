@@ -6,5 +6,9 @@ Doorkeeper.configure do
     user if user && user.valid_password?(params[:password])
   end
 
-  grant_flows %w(password)
+  resource_owner_from_assertion do
+    Oauth::FacebookLogin.new(params[:assertion]).authenticate
+  end
+
+  grant_flows %w(password assertion)
 end
