@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926192959) do
+ActiveRecord::Schema.define(version: 20160930155625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,11 +78,10 @@ ActiveRecord::Schema.define(version: 20160926192959) do
     t.date     "birth_date"
     t.integer  "height_cm"
     t.integer  "weight_kg"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "email",              null: false
-    t.string   "encrypted_password"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "email",           null: false
+    t.string   "password_digest"
   end
 
   create_table "wod_items", force: :cascade do |t|

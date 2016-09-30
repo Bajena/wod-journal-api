@@ -10,7 +10,7 @@ gem 'puma', '~> 3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -19,7 +19,7 @@ gem 'puma', '~> 3.0'
 # gem 'rack-cors'
 
 gem 'graphql'
-gem 'devise' # secure passswords, email/password validations
+gem 'email_validator'
 gem 'doorkeeper' # oauth provider
 gem 'doorkeeper-grants_assertion', git: 'https://github.com/Bajena/doorkeeper-grants_assertion' # additional 'assertion' grant type for doorkeeper
 gem 'koala' # facebook api

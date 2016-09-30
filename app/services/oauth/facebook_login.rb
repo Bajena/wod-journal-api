@@ -35,7 +35,7 @@ module Oauth
         email: user_data["email"],
         first_name: user_data["first_name"],
         last_name: user_data["last_name"],
-        password: Devise.friendly_token[0, 20]
+        password: SecureRandom.hex(12)
       )
     end
 
