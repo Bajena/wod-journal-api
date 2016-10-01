@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930155625) do
+ActiveRecord::Schema.define(version: 20161001195255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160930155625) do
     t.datetime "updated_at",      null: false
     t.string   "email",           null: false
     t.string   "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
   create_table "wod_items", force: :cascade do |t|
@@ -102,12 +103,14 @@ ActiveRecord::Schema.define(version: 20160930155625) do
     t.integer  "timecap_seconds"
     t.string   "title"
     t.boolean  "private",         default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.date     "date"
     t.integer  "author_id"
     t.integer  "goal_type"
     t.integer  "rounds"
+    t.integer  "preset_wod_id"
+    t.boolean  "preset",          default: false, null: false
     t.index ["author_id"], name: "index_wods_on_author_id", using: :btree
   end
 

@@ -24,7 +24,7 @@ namespace :db do
     else
       puts "Running MySQL migrations"
       Rake::Task["db:migrate"].invoke
-      Rake::Task["db:seed"].invoke
+      # Rake::Task["db:seed"].invoke
     end
   end
 end

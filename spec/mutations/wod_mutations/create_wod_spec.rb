@@ -3,19 +3,10 @@ require "rails_helper"
 describe QueriesController, type: :controller do
   include JsonApiHelpers
 
-  let!(:user) { FactoryGirl.create(:user) }
-  let(:token) do
-    double(
-      Doorkeeper::AccessToken, acceptable?: true, resource_owner_id: user.id
-    )
-  end
+  include_context "authenticated user"
 
   subject do
     post :create, params: { query: query_string }
-  end
-
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   context "wod with items" do

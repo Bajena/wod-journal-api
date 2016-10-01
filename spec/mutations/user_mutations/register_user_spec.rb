@@ -26,7 +26,6 @@ describe QueriesController, type: :controller do
   end
 
   context "valid params" do
-
     let(:user) { User.last }
     let(:email_input) { "email@email.com" }
 

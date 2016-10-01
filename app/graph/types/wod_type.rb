@@ -13,6 +13,8 @@ WodType = GraphQL::ObjectType.define do
   field :goal_type, !WodEnums::GoalTypeEnum, "Goal type"
   field :title, types.String, "Custom WOD title"
   field :rounds, types.Int, "Number of rounds to perform"
+  field :preset, types.Boolean, "Is this a preset WOD?"
+  field :preset_wod, WodType, "A preset WOD this WOD is based on"
 
   connection :wod_items, WodItemType.connection_type
 end

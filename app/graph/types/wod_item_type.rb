@@ -8,6 +8,7 @@ WodItemType = GraphQL::ObjectType.define do
   field :reps, types.Int, "Number of repetitions"
   field :men_weight_kg, types.Int, "Weight in kg for men"
   field :women_weight_kg, types.Int, "Weight in kg for women"
+  field :time_seconds, types.Int, "How long should athlete perform the movement"
   field :movement, MovementType, "Movement"
   field :wod, WodType, "WOD"
 end
