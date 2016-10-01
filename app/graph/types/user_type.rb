@@ -5,6 +5,7 @@ UserType = GraphQL::ObjectType.define do
   global_id_field :id
 
   field :id, types.ID
+  field :email, types.String
   field :first_name, types.String
   field :last_name, types.String
   field :birth_date, types.String
