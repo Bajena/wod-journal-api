@@ -6,16 +6,19 @@ class QueriesController < ApplicationController
   ].freeze
 
   def create
-    result = GraphQL::Query.new(
+    render json: run_query
+  end
+
+  private
+
+  def run_query
+    GraphQL::Query.new(
       GraphSchema,
       params[:query],
       variables: params[:variables] || {},
       context: context
     ).result
-    render json: result
   end
-
-  private
 
   def unauthenticated?
     query = params[:query].to_s

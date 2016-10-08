@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001195255) do
+ActiveRecord::Schema.define(version: 20161008170151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,17 @@ ActiveRecord::Schema.define(version: 20161001195255) do
     t.index ["wod_id"], name: "index_wod_items_on_wod_id", using: :btree
   end
 
+  create_table "wod_results", force: :cascade do |t|
+    t.integer "wod_id"
+    t.integer "user_id"
+    t.integer "time_seconds"
+    t.integer "reps"
+    t.boolean "done",         default: true
+    t.boolean "scaled",       default: false
+    t.index ["user_id"], name: "index_wod_results_on_user_id", using: :btree
+    t.index ["wod_id"], name: "index_wod_results_on_wod_id", using: :btree
+  end
+
   create_table "wods", force: :cascade do |t|
     t.text     "comment"
     t.integer  "timecap_seconds"
@@ -133,6 +144,8 @@ ActiveRecord::Schema.define(version: 20161001195255) do
   add_foreign_key "oauth_providers", "users"
   add_foreign_key "wod_items", "movements"
   add_foreign_key "wod_items", "wods"
+  add_foreign_key "wod_results", "users"
+  add_foreign_key "wod_results", "wods"
   add_foreign_key "wods", "users", column: "author_id"
   add_foreign_key "workouts", "wods"
 end
