@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008170151) do
+ActiveRecord::Schema.define(version: 20161012163655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "box_coaching_privileges", force: :cascade do |t|
+    t.integer  "box_id",     null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["box_id", "user_id"], name: "index_box_coaching_privileges_on_box_id_and_user_id", unique: true, using: :btree
+    t.index ["box_id"], name: "index_box_coaching_privileges_on_box_id", using: :btree
+    t.index ["user_id"], name: "index_box_coaching_privileges_on_user_id", using: :btree
+  end
+
+  create_table "box_memberships", force: :cascade do |t|
+    t.integer  "box_id",     null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["box_id", "user_id"], name: "index_box_memberships_on_box_id_and_user_id", unique: true, using: :btree
+    t.index ["box_id"], name: "index_box_memberships_on_box_id", using: :btree
+    t.index ["user_id"], name: "index_box_memberships_on_user_id", using: :btree
+  end
+
+  create_table "boxes", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "address"
+    t.string   "country"
+    t.string   "city"
+    t.string   "postal_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "movements", force: :cascade do |t|
     t.string   "name"
