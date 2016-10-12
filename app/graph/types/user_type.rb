@@ -15,4 +15,12 @@ UserType = GraphQL::ObjectType.define do
   connection :created_wods, WodType.connection_type do
     resolve -> (user, _args, _ctx) { user.wods }
   end
+
+  connection :coached_boxes, BoxType.connection_type do
+    resolve -> (user, _args, _ctx) { user.boxes }
+  end
+
+  connection :boxes, BoxType.connection_type do
+    resolve -> (user, _args, _ctx) { user.boxes }
+  end
 end

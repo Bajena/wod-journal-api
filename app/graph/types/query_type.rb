@@ -23,4 +23,9 @@ QueryType = GraphQL::ObjectType.define do
     argument :id, !types.ID
     resolve -> (_obj, args, _ctx) { User.find(args[:id]) }
   end
+
+  field :current_user do
+    type UserType
+    resolve -> (_obj, _args, ctx) { ctx[:current_user] }
+  end
 end
