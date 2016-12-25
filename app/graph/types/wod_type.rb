@@ -16,6 +16,5 @@ WodType = GraphQL::ObjectType.define do
   field :preset, types.Boolean, "Is this a preset WOD?"
   field :preset_wod, WodType, "A preset WOD this WOD is based on"
   field :box, BoxType, "The Box for which the WOD was created"
-
-  connection :wod_items, WodItemType.connection_type
+  field :wod_items, types[WodItemType], "Elements of the WOD"
 end
