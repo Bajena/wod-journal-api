@@ -14,4 +14,8 @@ BoxType = GraphQL::ObjectType.define do
   connection :members, UserType.connection_type do
     resolve -> (box, _args, _ctx) { box.members }
   end
+
+  connection :wods, WodType.connection_type do
+    resolve -> (box, _args, _ctx) { box.wods }
+  end
 end
