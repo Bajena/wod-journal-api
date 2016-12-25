@@ -11,7 +11,9 @@ UserType = GraphQL::ObjectType.define do
   field :birth_date, types.String
   field :height_cm, types.Int
   field :weight_kg, types.Int
-  field :created_wods, types[WodType], "WODs created by the user"
+  field :created_wods, types[WodType], "WODs created by the user" do
+    resolve -> (obj, _args, _ctx) { obj.wods }
+  end
   field :coached_boxes, types[BoxType], "List of boxes the user is a coach of"
   field :boxes, types[BoxType], "List of boxes the user belong to"
 end
