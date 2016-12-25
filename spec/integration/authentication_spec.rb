@@ -22,9 +22,7 @@ describe QueriesController, type: :controller do
 
   let(:query_string) do
     "{"\
-      "movements {"\
-        "edges { node { id name } }"\
-      "}"\
+      "movements { id name }"\
     "}"
   end
 
