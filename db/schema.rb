@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012170920) do
+ActiveRecord::Schema.define(version: 20161225152629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,7 +152,9 @@ ActiveRecord::Schema.define(version: 20161012170920) do
     t.integer  "rounds"
     t.integer  "preset_wod_id"
     t.boolean  "preset",          default: false, null: false
+    t.integer  "box_id"
     t.index ["author_id"], name: "index_wods_on_author_id", using: :btree
+    t.index ["box_id"], name: "index_wods_on_box_id", using: :btree
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
@@ -164,5 +166,6 @@ ActiveRecord::Schema.define(version: 20161012170920) do
   add_foreign_key "wod_items", "wods"
   add_foreign_key "wod_results", "users"
   add_foreign_key "wod_results", "wods"
+  add_foreign_key "wods", "boxes"
   add_foreign_key "wods", "users", column: "author_id"
 end
