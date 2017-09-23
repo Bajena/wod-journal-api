@@ -2,7 +2,9 @@
 [![Build Status](https://travis-ci.org/Bajena/wod-journal-api.svg?branch=master)](https://travis-ci.org/Bajena/wod-journal-api)
 [![Code Climate](https://codeclimate.com/github/Bajena/wod-journal-api/badges/gpa.svg)](https://codeclimate.com/github/Bajena/wod-journal-api)
 
-# WOD Journal backend
+# WOD Journal API
+
+Rails 5 + GraphQL API for crossfit workout management. 
 
 For testing queries use:
 https://github.com/skevy/graphiql-app
